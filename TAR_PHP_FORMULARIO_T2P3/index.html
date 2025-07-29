@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operaciones Matemáticas</title>
+    <link rel="stylesheet" href="./public/lib/bootstrap-5.3.5-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./public/css/styles.css">
+</head>
+<body style="background-color: #f0f2f5;">
+  
+<div class="container py-5">
+    <h2 class="text-center mb-4">Sistema de Operaciones Matemáticas</h2>
+    
+    <div class="row justify-content-center g-4">
+        <!-- Botones para abrir los modales -->
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modalSuma">
+                Sumar Números
+            </button>
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#modalTabla">
+                Tabla de Multiplicar
+            </button>
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-warning w-100" data-bs-toggle="modal" data-bs-target="#modalParImpar">
+                Par o Impar
+            </button>
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-info w-100" data-bs-toggle="modal" data-bs-target="#modalEdad">
+                Calcular Edad
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal Suma -->
+    <div class="modal fade" id="modalSuma" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Sumar Dos Números</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formSuma">
+                        <div class="mb-3">
+                            <label for="numero1" class="form-label">Primer Número</label>
+                            <input type="number" class="form-control" id="numero1" name="numero1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="numero2" class="form-label">Segundo Número</label>
+                            <input type="number" class="form-control" id="numero2" name="numero2" required>
+                        </div>
+                        <div id="resultadoSuma" class="alert alert-primary d-none"></div>
+                        <button type="submit" class="btn btn-primary">Calcular Suma</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Tabla -->
+    <div class="modal fade" id="modalTabla" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tabla de Multiplicar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formTabla">
+                        <div class="mb-3">
+                            <label for="numeroTabla" class="form-label">Ingrese un número</label>
+                            <input type="number" class="form-control" id="numeroTabla" name="numeroTabla" required>
+                        </div>
+                        <div id="resultadoTabla" class="alert alert-success d-none"></div>
+                        <button type="submit" class="btn btn-success">Generar Tabla</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Par o Impar -->
+    <div class="modal fade" id="modalParImpar" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Verificar Par o Impar</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formParImpar">
+                        <div class="mb-3">
+                            <label for="numeroParImpar" class="form-label">Ingrese un número</label>
+                            <input type="number" class="form-control" id="numeroParImpar" name="numeroParImpar" required>
+                        </div>
+                        <div id="resultadoParImpar" class="alert alert-warning d-none"></div>
+                        <button type="submit" class="btn btn-warning">Verificar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Edad -->
+    <div class="modal fade" id="modalEdad" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Calcular Edad</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formEdad">
+                        <div class="mb-3">
+                            <label for="anioNacimiento" class="form-label">Año de Nacimiento</label>
+                            <input type="number" class="form-control" id="anioNacimiento" name="anioNacimiento" required>
+                        </div>
+                        <div id="resultadoEdad" class="alert alert-info d-none"></div>
+                        <button type="submit" class="btn btn-info">Calcular Edad</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</div>
+</div>
+
+<script src="./public/lib/bootstrap-5.3.5-dist/js/bootstrap.min.js"></script>
+<script>
+// Función para manejar el envío de formularios
+function manejarFormulario(formId, operacion) {
+    const form = document.getElementById(formId);
+    const resultadoDiv = document.getElementById('resultado' + operacion);
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const formData = new FormData(form);
+        formData.append('operacion', operacion.toLowerCase());
+
+        fetch('app/procesar.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(resultado => {
+            if (operacion.toLowerCase() === 'tabla') {
+                resultadoDiv.innerHTML = resultado;
+            } else {
+                resultadoDiv.textContent = resultado;
+            }
+            resultadoDiv.classList.remove('d-none');
+            form.reset();
+        })
+        .catch(error => {
+            resultadoDiv.textContent = 'Error: ' + error.message;
+            resultadoDiv.classList.remove('d-none');
+        });
+    });
+}
+
+// Inicializar los manejadores de eventos para cada formulario
+document.addEventListener('DOMContentLoaded', function() {
+    manejarFormulario('formSuma', 'Suma');
+    manejarFormulario('formTabla', 'Tabla');
+    manejarFormulario('formParImpar', 'ParImpar');
+    manejarFormulario('formEdad', 'Edad');
+});
+</script>
+</body>
+</html>
