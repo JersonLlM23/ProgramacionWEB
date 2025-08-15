@@ -129,6 +129,7 @@ $notas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <th class="text-center">Nota 3</th>
                     <th class="text-center">Promedio</th>
                     <th class="text-center">Estado</th>
+                    <th class="text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -149,6 +150,18 @@ $notas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     $badgeClass = ($nota['estado'] === 'APROBADO') ? 'badge-aprobado' : 'badge-desaprobado';
                     ?>
                     <span class="badge <?php echo $badgeClass; ?>"><?php echo $nota['estado']; ?></span>
+                </td>
+                <td class="text-center">
+                    <a href="editar_nota.php?id=<?php echo $nota['id']; ?>" class="btn btn-primary btn-sm">
+                        <i class="bi bi-pencil-square"></i> Editar
+                    </a>
+                    <button type="button" 
+                            class="btn btn-danger btn-sm btnEliminarNota" 
+                            data-id="<?php echo $nota['id']; ?>" 
+                            data-estudiante="<?php echo htmlspecialchars($nota['usuario_nombre']); ?>"
+                            data-materia="<?php echo htmlspecialchars($nota['materia_nombre']); ?>">
+                        <i class="bi bi-trash"></i> Eliminar
+                    </button>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -193,15 +206,55 @@ $notas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     // Sweet Alert de bienvenida
-    Swal.fire({
-        title: '¡Bienvenido al Sistema de Notas!',
-        text: 'Sistema de calificaciones cargado correctamente',
-        icon: 'success',
-        confirmButtonText: 'Continuar',
-        background: 'linear-gradient(135deg, #1a1f35 0%, #2a3245 100%)',
-        color: '#ffffff',
-        iconColor: '#4a90e2',
-        confirmButtonColor: '#4a90e2'
+ 
+
+    // Función para eliminar nota
+    function eliminarNota(id, estudiante, materia) {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: `¿Deseas eliminar la calificación de ${estudiante} en la materia ${materia}?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: '¡Sí, eliminar!',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch('eliminar_nota.php', {
+                    method: 'POST',
+                    body: JSON.stringify({ id: id }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        Swal.fire('¡Eliminado!', data.message, 'success')
+                        .then(() => {
+                            location.reload();
+                        });
+                    } else {
+                        Swal.fire('Error', data.message, 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    Swal.fire('Error', 'Ocurrió un error al eliminar la calificación', 'error');
+                });
+            }
+        });
+    }
+
+    // Agregar event listeners a los botones de eliminar
+    document.querySelectorAll('.btnEliminarNota').forEach(button => {
+        button.addEventListener('click', function() {
+            const id = this.getAttribute('data-id');
+            const estudiante = this.getAttribute('data-estudiante');
+            const materia = this.getAttribute('data-materia');
+            eliminarNota(id, estudiante, materia);
+        });
     });
 
     // Añadir botón de estadísticas
