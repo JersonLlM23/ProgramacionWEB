@@ -1,0 +1,507 @@
+/* Estilos generales con tema astronómico */
+body {
+    background: linear-gradient(135deg, #0f1729 0%, #1a1f35 100%);
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.8), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.8), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 50px 160px, rgba(255, 255, 255, 0.8), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 40px, rgba(255, 255, 255, 0.8), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 130px 80px, rgba(255, 255, 255, 0.8), rgba(0,0,0,0)),
+        linear-gradient(135deg, #0f1729 0%, #1a1f35 100%);
+    min-height: 100vh;
+    color: #ffffff;
+}
+
+/* Estilos específicos para el formulario */
+.form-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.container-fluid {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.form-container {
+    background: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, #4a90e2, #67b26f);
+    animation: borderFlow 2s linear infinite;
+}
+
+@keyframes borderFlow {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.form-header h2 {
+    color: #ffffff;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+}
+
+.form-header p {
+    color: #a8b2d1;
+    font-size: 1rem;
+}
+
+.container {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+}
+
+/* Estilo para el título principal */
+h1 {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+    font-weight: 600;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, #4a90e2, #67b26f);
+    border-radius: 3px;
+}
+
+/* Estilo para la tarjeta principal */
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Estilo para el encabezado de la tarjeta */
+.card-header {
+    background: rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px 15px 0 0 !important;
+    padding: 1.5rem;
+}
+
+.card-header h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0;
+}
+
+/* Estilo para el cuerpo de la tarjeta */
+.card-body {
+    padding: 2rem;
+}
+
+/* Estilos para formulario */
+.user-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 15px rgba(74, 144, 226, 0.3);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.form-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn-submit, .btn-cancel {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 50px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.btn-submit {
+    background: linear-gradient(45deg, #4a90e2, #357abd);
+    color: white;
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+.btn-cancel {
+    background: linear-gradient(45deg, #6c757d, #495057);
+    color: white;
+    box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+}
+
+.btn-submit:hover, .btn-cancel:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos para los botones generales */
+.btn {
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin: 0.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+/* Estilos específicos para cada botón */
+.btn-primary {
+    background: linear-gradient(45deg, #4a90e2, #357abd);
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+.btn-secondary {
+    background: linear-gradient(45deg, #6c757d, #495057);
+    box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+}
+
+.btn-info {
+    background: linear-gradient(45deg, #17a2b8, #138496);
+    box-shadow: 0 4px 15px rgba(23, 162, 184, 0.3);
+}
+
+.btn-dark {
+    background: linear-gradient(45deg, #343a40, #23272b);
+    box-shadow: 0 4px 15px rgba(52, 58, 64, 0.3);
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* Efectos hover para los botones */
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Animación para el texto */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card-body p {
+    animation: fadeIn 1s ease-out;
+    color: #e0e0e0;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+/* Estilos para la tabla de usuarios */
+.table-container {
+    background: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    margin-top: 2rem;
+}
+
+/* Personalización de DataTables */
+.dataTables_wrapper {
+    color: #ffffff;
+}
+
+.dataTables_length select,
+.dataTables_filter input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 0.375rem 0.75rem;
+}
+
+.dataTables_length select option {
+    background: #1a1f35;
+    color: #ffffff;
+}
+
+.dataTables_info,
+.dataTables_paginate {
+    color: #ffffff !important;
+    margin-top: 1rem;
+}
+
+.paginate_button {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 8px !important;
+    margin: 0 0.2rem !important;
+}
+
+.paginate_button.current {
+    background: rgba(74, 144, 226, 0.3) !important;
+    border-color: #4a90e2 !important;
+}
+
+/* Estilos para la tabla */
+.table {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.table thead {
+    background: rgba(74, 144, 226, 0.2);
+}
+
+.table th {
+    border-color: rgba(255, 255, 255, 0.1);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 1rem;
+}
+
+.table td {
+    border-color: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+.table tbody tr {
+    transition: all 0.3s ease;
+}
+
+.table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+/* Estilos para el modal */
+.modal-content {
+    background: linear-gradient(135deg, #1a1f35 0%, #2a3245 100%);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.btn-close {
+    color: #ffffff;
+    text-shadow: none;
+    opacity: 0.7;
+}
+
+.btn-close:hover {
+    opacity: 1;
+}
+
+/* Estilos para SweetAlert2 personalizado */
+.swal2-popup {
+    background: linear-gradient(135deg, #1a1f35 0%, #2a3245 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 20px !important;
+}
+
+.swal2-title,
+.swal2-content {
+    color: #ffffff !important;
+}
+
+.swal2-actions button {
+    border-radius: 50px !important;
+    padding: 0.8rem 1.5rem !important;
+    font-weight: 500 !important;
+}
+
+/* Estilos específicos para la página de notas */
+.badge {
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.badge-aprobado {
+    background: linear-gradient(45deg, #00b09b, #96c93d);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 176, 155, 0.3);
+}
+
+.badge-desaprobado {
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 65, 108, 0.3);
+}
+
+/* Estilos para las celdas de notas */
+.table td[data-note] {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.table td[data-note]:hover::after {
+    content: attr(data-note);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    z-index: 1000;
+}
+
+/* Animación para las notas */
+@keyframes noteGlow {
+    0% { text-shadow: 0 0 5px rgba(74, 144, 226, 0); }
+    50% { text-shadow: 0 0 10px rgba(74, 144, 226, 0.5); }
+    100% { text-shadow: 0 0 5px rgba(74, 144, 226, 0); }
+}
+
+.table td strong {
+    animation: noteGlow 2s infinite;
+    color: #4a90e2;
+}
+
+/* Media queries para responsividad */
+@media (max-width: 768px) {
+    .container {
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+    }
+
+    .card-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .btn {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+
+    .table-container {
+        padding: 1rem;
+    }
+
+    .dataTables_wrapper {
+        overflow-x: auto;
+    }
+
+    .badge {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.7rem;
+    }
+}
